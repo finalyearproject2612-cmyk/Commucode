@@ -1,8 +1,162 @@
-<html>
-  <head>
-    <title>tamil</title>
-    <body>
-      <p>this is commucode</p>
-    </body>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #4b79a1, #283e51);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 350px;
+    padding: 20px;
+}
+
+.form-box {
+    width: 100%;
+    background: #fff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.form-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group p {
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.input-group p a {
+    color: #4b79a1;
+    text-decoration: none;
+}
+
+.input-field {
+    margin-bottom: 15px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-field input:focus {
+    border-color: #4b79a1;
+    box-shadow: 0 0 8px rgba(75, 121, 161, 0.3);
+}
+
+.btn-field {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-field button {
+    width: 48%;
+    padding: 12px;
+    border: none;
+    background: #4b79a1;
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-field button.disable {
+    background: #bbbbbb;
+}
+
+.btn-field button:hover:not(.disable) {
+    background: #35516a;
+}
+
+#nameField {
+    display: none;
+}
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-box">
+
+        <h1 id="title">Login</h1>
+
+        <form>
+            <div class="input-group">
+                <div class="input-field" id="nameField">
+                    <input type="text" placeholder="Name">
+                </div>
+
+                <div class="input-field">
+                    <input type="email" placeholder="Email">
+                </div>
+
+                <div class="input-field">
+                    <input type="password" placeholder="Password">
+                </div>
+
+                <p>Forgot password? <a href="#">Click Here</a></p>
+            </div>
+
+            <div class="btn-field">
+                <button type="button" id="loginBtn">Login</button>
+                <button type="button" id="registerBtn" class="disable">Register</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<script>
+    let loginBtn = document.getElementById("loginBtn");
+    let registerBtn = document.getElementById("registerBtn");
+    let nameField = document.getElementById("nameField");
+    let title = document.getElementById("title");
+
+    registerBtn.onclick = function(){
+        nameField.style.display = "block";
+        title.innerHTML = "Register";
+        loginBtn.classList.add("disable");
+        registerBtn.classList.remove("disable");
+    }
+
+    loginBtn.onclick = function(){
+        nameField.style.display = "none";
+        title.innerHTML = "Login";
+        loginBtn.classList.remove("disable");
+        registerBtn.classList.add("disable");
+    }
+</script>
+
+</body>
 </html>
