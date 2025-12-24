@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Year Project</title>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const supabase1 = supabase.createClient(
+    'https://rmmgttfsqtgafkfmjztl.supabase.co',
+    'sb_publishable_men_Rj_NvpjM_ZQeZc_kIA_pFS6VIcg'
+  );
+  async function Lg() {
+  const jEmail = document.getElementById('email').value;
+  const jPass = document.getElementById('pass').value;
+  const alertBox = document.getElementById('alert');
+const { data, error1 } = await supabase1
+    .from('FacultyAuth')       // table name
+    .select()
+    .eq('Email',jEmail)         // row condition
+    .single();
+    console.log(`${data.Email} ${data.Password}`);
+ 
+ if((`${data.Email}`==jEmail)&&(`${data.Password}`==jPass)&&(`${data.Role}`=='Admin')){
+ window.location.href = "admin.html";   
+}else if((`${data.Email}`==jEmail)&&(`${data.Password}`==jPass)&&(`${data.Role}`=='Faculty')){
+ window.location.href = "faculty.html";   
+}else{
+      alertBox.textContent = "Innvalid Credentials!";
+      alertBox.style.color = "red";
+    }
+
+  }
+</script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(to bottom right, #3f51b5, #2196f3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    width: 380px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+form input,select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+input,select::placeholder {
+    color: #666;
+}
+
+.btnn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    background: #ff9800;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 600;
+}
+
+.btnn:hover {
+    background: #ff6f00;
+    transform: scale(1.03);
+}
+
+.link {
+    text-align: center;
+    color: #fff;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.alert {
+    margin-top: 15px;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+
+</head>
+<body>
+
+<main class="authen">
+<div class="content">
+<div class="form" id="regform">
+
+<form method="POST" id="LoginForm">
+<h2>Login</h2>
+
+<input type="email" id="email" name="email" placeholder="Enter Email" required>
+<input type="password" id="pass" name="pass" placeholder="Enter Password" required>
+
+<button class="btnn" type="button" id="Login" onclick="Lg()">Login</button>
+
+</form>
+<br>
+<div class="alert" id="alert"></div>
+</div>
+</div>
+</main>
+
+</body>
+</html>
